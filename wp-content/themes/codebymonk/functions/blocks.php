@@ -8,11 +8,24 @@
  * @return array
  */
 function cbm_get_block_attributes(array $block, $extra_classes = []): array {
-	$name    = str_replace('acf/', '', $block['name'] ?? '');
-	$id      = get_field('block_id') ?: ($block['anchor'] ?? ($block['id'] ?? uniqid('block-')));
-	$padding = (array) get_field('padding_options');
-	$margin  = (array) get_field('margin_options');
-	$bg      = get_field('block_background');
+	$name = str_replace('acf/', '', $block['name'] ?? '');
+
+	$default_ids = [
+		'hero'      => 'inicio',
+		'services'  => 'servicios',
+		'portfolio' => 'portafolio',
+		'results'   => 'casos',
+		'process'   => 'proceso',
+		'contact'   => 'contacto',
+		'marquee'   => 'marquee',
+	];
+
+	$custom_id = get_field('block_id') ?: ($block['anchor'] ?? null);
+	$id        = !empty($custom_id) ? $custom_id : ($default_ids[$name] ?? ($block['id'] ?? uniqid('block-')));
+	$padding   = (array) get_field('padding_options');
+	$margin    = (array) get_field('margin_options');
+	$bg        = get_field('block_background');
+
 
 	// Mapeo declarativo de clases (array_filter elimina los valores vacíos automáticamente)
 	$classes = array_merge(

@@ -5,6 +5,7 @@ import Testimonials from '../modules/testimonials';
 import Contact from '../modules/contact';
 import Cat3D from '../modules/cat-3d';
 import CatCursor from '../modules/cursor';
+import ScrollCat from '../modules/scroll-cat';
 
 export default {
   init() {
@@ -15,6 +16,8 @@ export default {
     Animations.init();
     Cat3D.init();
     CatCursor.init();
+    ScrollCat.init();
   },
+
   finalize() {},
 };
