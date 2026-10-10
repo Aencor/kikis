@@ -16,7 +16,8 @@ $monk_includes = [
 	"functions/security.php", // Security focused settings
 	"functions/options.php", // ACF Theme Options
 	"functions/shortcodes.php", // Custom Wordpress Shortcodes for WYSIWYGs
-	"functions/blocks.php" // Declare Custom Blocks
+	"functions/blocks.php", // Declare Custom Blocks
+	"functions/acf-fields.php" // Custom Fields definitions for Blocks
 ];
 
 function nylon_include($includes) {

@@ -32,7 +32,28 @@
   background: var(--pink);
   border-bottom-left-radius: 12rem;
 }
-.hero-art > svg.spark-icon { position: absolute; top: 19%; right: 12%; width: 3rem; height: 3rem; color: var(--paper); }
+.cat-3d-canvas {
+  position: relative;
+  width: 24rem;
+  height: 27rem;
+  margin-top: 1rem;
+  cursor: grab;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s ease;
+}
+.cat-3d-canvas:active {
+  cursor: grabbing;
+}
+.cat-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
 
 .cat { position: relative; width: 21rem; height: 23rem; margin-top: 3rem; }
 .cat-face {
