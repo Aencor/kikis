@@ -1,0 +1,29 @@
+.marquee { 
+  overflow: hidden; 
+  padding: 1rem 0; 
+  background: var(--dark); 
+  color: var(--light); 
+  width: 100%;
+}
+
+.marquee-inner { 
+  display: flex; 
+  align-items: center; 
+  width: max-content; 
+  gap: 1.5rem; 
+  font-size: .72rem; 
+  font-weight: 700; 
+  letter-spacing: .2em; 
+  white-space: nowrap; 
+  animation: marquee 22s linear infinite; 
+}
+
+.marquee svg { color: var(--pink); }
+
+@keyframes marquee { 
+  to { transform: translateX(-50%); } 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-inner { animation: none; }
+}

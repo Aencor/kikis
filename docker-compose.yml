@@ -37,7 +37,7 @@ services:
     image: wordpress
     restart: unless-stopped
     ports:
-      - 8080:80
+      - 80:80
     environment:
       WORDPRESS_DB_HOST: database:3306
       WORDPRESS_DB_NAME: '${MYSQL_DATABASE}'

@@ -1,9 +1,37 @@
-<?php get_header(); ?>
-<main class="global-main py-5">
-   <h5 class="bg-sky-50 text-shadow-lg">Hello World</h5>
-   <div class="h-14 bg-linear-to-r from-cyan-500 to-blue-500"></div>
-<div class="h-14 bg-linear-to-t from-sky-500 to-indigo-500"></div>
-<div class="h-14 bg-linear-to-bl from-violet-500 to-fuchsia-500"></div>
-<div class="h-14 bg-linear-65 from-purple-500 to-pink-500"></div>
+<?php
+/**
+ * Main Template / Fallback Front Page
+ */
+get_header(); ?>
+
+<main class="global-main" id="main-content">
+  <?php 
+  if (have_posts()) :
+    while (have_posts()) : the_post();
+      $content = get_the_content();
+      if (!empty(trim($content))) :
+        the_content();
+      else :
+        // Render default Figma blocks if page content is empty
+        get_template_part('blocks/hero');
+        get_template_part('blocks/marquee');
+        get_template_part('blocks/services');
+        get_template_part('blocks/portfolio');
+        get_template_part('blocks/results');
+        get_template_part('blocks/process');
+        get_template_part('blocks/contact');
+      endif;
+    endwhile;
+  else :
+    get_template_part('blocks/hero');
+    get_template_part('blocks/marquee');
+    get_template_part('blocks/services');
+    get_template_part('blocks/portfolio');
+    get_template_part('blocks/results');
+    get_template_part('blocks/process');
+    get_template_part('blocks/contact');
+  endif;
+  ?>
 </main>
+
 <?php get_footer(); ?>

@@ -1,0 +1,91 @@
+.contact { 
+  display: grid; 
+  grid-template-columns: .9fr 1.1fr; 
+  gap: 8vw; 
+  background: var(--pink-light); 
+}
+
+.contact-copy > svg { 
+  width: 3rem; 
+  height: 3rem; 
+  margin-bottom: 2.5rem; 
+  color: var(--purple); 
+  transform: rotate(-12deg); 
+}
+.contact-copy > p:not(.kicker) { max-width: 29rem; margin: 2rem 0; color: var(--gray-dark); line-height: 1.7; font-size: 1.05rem; }
+.contact-copy > a { 
+  display: inline-flex; 
+  gap: .5rem; 
+  align-items: center; 
+  font-weight: 700; 
+  border-bottom: 1px solid; 
+  transition: opacity .2s;
+}
+.contact-copy > a:hover { opacity: .7; }
+
+.contact-form { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1.5rem; 
+  padding: 2.5rem; 
+  border-radius: var(--radius); 
+  background: var(--paper); 
+  box-shadow: 0 1.5rem 5rem rgba(41, 26, 37, .08); 
+}
+
+.contact-form label { 
+  display: flex; 
+  flex-direction: column; 
+  gap: .6rem; 
+  font-size: .7rem; 
+  font-weight: 700; 
+  color: var(--ink);
+}
+.contact-form label:nth-child(n+3), 
+.contact-form button, 
+.form-success { 
+  grid-column: 1 / -1; 
+}
+
+.contact-form input, 
+.contact-form select, 
+.contact-form textarea { 
+  width: 100%; 
+  padding: .9rem 0; 
+  border: 0; 
+  border-bottom: 1px solid var(--line); 
+  outline: 0; 
+  background: transparent; 
+  color: var(--ink); 
+  font-size: .85rem; 
+  font-weight: 400; 
+  transition: border-color .2s;
+}
+.contact-form select {
+  cursor: pointer;
+}
+.contact-form textarea { resize: vertical; }
+.contact-form input:focus, 
+.contact-form select:focus, 
+.contact-form textarea:focus { 
+  border-color: var(--purple); 
+}
+.contact-form button { margin-top: .5rem; }
+.form-success { 
+  margin: 0; 
+  color: var(--purple-dark); 
+  text-align: center; 
+  font-size: .85rem; 
+  font-weight: 600;
+  display: none;
+}
+.form-success.is-visible { display: block; }
+
+@media (max-width: 900px) {
+  .contact { grid-template-columns: 1fr; gap: 4rem; }
+}
+
+@media (max-width: 620px) {
+  .contact-form { grid-template-columns: 1fr; padding: 1.5rem; }
+  .contact-form label { grid-column: 1 / -1; }
+}

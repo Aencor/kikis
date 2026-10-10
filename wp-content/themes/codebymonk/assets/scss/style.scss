@@ -1,12 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #4050c6;
-  --color-secondary: #00bfa5;
-  --color-tertiary: #52b1ff;
-  --color-dark: #071e3c;
-  --font-body: "Poppins", sans-serif;
-  --font-headline: "Open Sans", sans-serif;
+:root {
+  --ink: #171417;
+  --paper: #fffdfb;
+  --dark: #171417;
+  --light: #fffdfb;
+  --cat-white: #fffdfb;
+  --pink: #f5bfd4;
+  --pink-light: #fceaf1;
+  --purple: #9874d1;
+  --purple-dark: #7650ad;
+  --gray: #edeae8;
+  --gray-dark: #716a70;
+  --line: rgba(23, 20, 23, 0.16);
+  --radius: 1.5rem;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+  scroll-behavior: smooth;
 }
 
-@import 'all';
+[data-theme="dark"] {
+  --ink: #f5f0f3;
+  --paper: #141114;
+  --pink: #d48eac;
+  --pink-light: #281d24;
+  --purple: #a486d8;
+  --purple-dark: #c7ade8;
+  --gray: #211d20;
+  --gray-dark: #b7adb4;
+  --line: rgba(255, 255, 255, 0.15);
+  color-scheme: dark;
+}
+
+@theme {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-pink: var(--pink);
+  --color-pink-light: var(--pink-light);
+  --color-purple: var(--purple);
+  --color-purple-dark: var(--purple-dark);
+  --color-gray: var(--gray);
+  --color-gray-dark: var(--gray-dark);
+  --color-line: var(--line);
+  --font-body: "DM Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+* { box-sizing: border-box; }
+body { 
+  margin: 0; 
+  min-width: 320px; 
+  background: var(--paper); 
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  transition: background-color .35s ease, color .35s ease; 
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; height: auto; }
+svg { width: 1.25rem; height: 1.25rem; }
+
+em { font-family: "Playfair Display", serif; font-weight: 700; color: var(--purple-dark); }
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+
+.eyebrow, .kicker {
+  margin: 0 0 1.4rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.eyebrow { display: flex; align-items: center; gap: .65rem; }
+.eyebrow span { width: .5rem; height: .5rem; border-radius: 50%; background: var(--purple); }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 3.5rem;
+  padding: 0 1.6rem;
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+.button-dark { background: var(--ink); color: var(--paper); }
+.button-light { background: var(--light); color: var(--dark); }
+.button:hover { transform: translateY(-2px); }
+
+.text-link { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: .55rem; 
+  padding-bottom: .25rem; 
+  border-bottom: 1px solid; 
+  font-size: .84rem; 
+  font-weight: 700; 
+  transition: opacity .2s ease;
+}
+.text-link:hover { opacity: .7; }
+
+.section { padding: 8rem 4vw; }
+.section-heading { 
+  display: grid; 
+  grid-template-columns: 1fr 2.1fr 1fr; 
+  gap: 4rem; 
+  align-items: start; 
+  margin-bottom: 5rem; 
+}
+.section-heading h2, .portfolio h2, .results h2, .contact h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.7rem, 4.5vw, 5.3rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+.section-heading > p:last-child { color: var(--gray-dark); line-height: 1.65; }
+
+@import "blocks/all";
+
+@media (max-width: 900px) {
+  .section { padding: 6rem 4vw; }
+  .section-heading { grid-template-columns: 1fr; gap: 1rem; }
+  .section-heading > p:last-child { max-width: 30rem; }
+}
+
+@media (max-width: 620px) {
+  .section { padding: 5.5rem 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a digital marketing agency's portfolio, success stories, services, and contact info with a pastel cat-themed design to attract clients.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
