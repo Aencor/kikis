@@ -1,8 +1,4 @@
 {
-    "/main.js": "/main.js?id=9429eba95d1393136abc6332f70533c2",
-    "/style.css": "/style.css?id=9b15a601ac5a96572b20d2cf940abe80",
-    "/master.min.css": "/master.min.css?id=d41d8cd98f00b204e9800998ecf8427e",
-    "/manifest.min.js": "/manifest.min.js?id=9f25126fb3a2512b58bd88b1eb1649b9",
-    "/vendor.min.js": "/vendor.min.js?id=d41d8cd98f00b204e9800998ecf8427e",
-    "/main.min.js": "/main.min.js?id=9429eba95d1393136abc6332f70533c2"
+    "/main.js": "/main.js",
+    "/style.css": "/style.css"
 }

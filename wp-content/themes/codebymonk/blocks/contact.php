@@ -54,10 +54,16 @@ if (empty($services)) {
     <p class="kicker"><?= esc_html($kicker); ?></p>
     <h2><?= wp_kses_post($heading); ?></h2>
     <p><?= esc_html($desc); ?></p>
-    <a href="mailto:<?= esc_attr($email); ?>">
-      <?= esc_html($email); ?> 
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-    </a>
+    <div class="contact-links" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+      <a href="mailto:<?= esc_attr($email); ?>">
+        <?= esc_html($email); ?> 
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+      <a href="https://wa.me/5215581812373" target="_blank" rel="noopener noreferrer">
+        WhatsApp: +52 1 55 8181 2373
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+      </a>
+    </div>
   </div>
 
   <form class="contact-form" id="kikis-contact-form">
@@ -83,9 +89,9 @@ if (empty($services)) {
       <textarea required name="message" rows="3" placeholder="Tu idea, tus objetivos, tus sueños..."></textarea>
     </label>
     <button class="button button-dark" type="submit">
-      <span class="btn-text">Enviar mensaje</span>
+      <span class="btn-text">Enviar por WhatsApp</span>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
     </button>
-    <p class="form-success" role="status">¡Gracias! Muy pronto afilamos ideas contigo.</p>
+    <p class="form-success" role="status">¡Gracias! Redirigiendo a WhatsApp...</p>
   </form>
 </section>
