@@ -9,12 +9,38 @@ $kicker      = get_field('contact_kicker') ?: '¿Tienes un proyecto?';
 $heading     = get_field('contact_heading') ?: 'Hagamos algo<br /><em>inolvidable.</em>';
 $desc        = get_field('contact_desc') ?: 'Cuéntanos qué tienes en mente. Prometemos responder antes de gastar nuestras siete vidas.';
 $email       = get_field('contact_email') ?: 'hola@kikismarketing.com';
-$services    = get_field('contact_services_options') ?: [
-  'Estrategia digital',
-  'Social media',
-  'Identidad de marca',
-  'Web & e-commerce'
-];
+
+$raw_services = get_field('contact_services_options');
+$services = [];
+
+if (!empty($raw_services)) {
+  if (is_array($raw_services)) {
+    foreach ($raw_services as $s) {
+      if (is_array($s) && isset($s['option'])) {
+        $services[] = $s['option'];
+      } elseif (is_string($s)) {
+        $services[] = $s;
+      }
+    }
+  } elseif (is_string($raw_services)) {
+    $lines = preg_split('/[\r\n,]+/', $raw_services, -1, PREG_SPLIT_NO_EMPTY);
+    foreach ($lines as $line) {
+      $trimmed = trim($line);
+      if (!empty($trimmed)) {
+        $services[] = $trimmed;
+      }
+    }
+  }
+}
+
+if (empty($services)) {
+  $services = [
+    'Estrategia digital',
+    'Social media',
+    'Identidad de marca',
+    'Web & e-commerce'
+  ];
+}
 ?>
 
 <section <?= $block_attrs; ?>>

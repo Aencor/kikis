@@ -32,7 +32,7 @@ $note_text  = get_field('note_text') ?: 'Curiosidad estratégica<br />desde 2020
     </div>
   </div>
 
-  <div class="hero-art" aria-label="Ilustración de un gato creativo">
+  <div class="hero-art" aria-label="Ilustración y animación 3D de la gatita Kiki">
     <div class="orbit orbit-one">SOCIAL</div>
     <div class="orbit orbit-two">BRANDING</div>
     
@@ -40,7 +40,11 @@ $note_text  = get_field('note_text') ?: 'Curiosidad estratégica<br />desde 2020
       <path d="M24 2c1 15 7 21 22 22-15 1-21 7-22 22C23 31 17 25 2 24 17 23 23 17 24 2Z" fill="currentColor" />
     </svg>
 
-    <div class="cat">
+    <!-- 3D Three.js Cat Container -->
+    <div class="cat-3d-canvas" id="cat-3d-canvas" title="¡Haz clic para interactuar!"></div>
+
+    <!-- Fallback Cat in case WebGL is disabled -->
+    <div class="cat cat-fallback">
       <div class="cat-ear cat-ear-left"></div>
       <div class="cat-ear cat-ear-right"></div>
       <div class="cat-face">

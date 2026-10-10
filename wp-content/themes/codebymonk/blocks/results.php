@@ -11,49 +11,85 @@ $intro     = get_field('results_intro') ?: 'Nos encanta una idea brillante, pero
 $cta_text  = get_field('results_cta_text') ?: 'Quiero esos resultados';
 $cta_link  = get_field('results_cta_link') ?: '#contacto';
 
-$testimonials = get_field('testimonials') ?: [
-  [
-    'brand' => 'NUBA SKIN',
-    'year' => '2024',
-    'quote' => 'Pasamos de ser una marca bonita a ser una marca que la gente busca, recomienda y compra.',
-    'metrics' => [
-      ['value' => '+214%', 'label' => 'Ventas online'],
-      ['value' => '4.8×', 'label' => 'Retorno en ads'],
-      ['value' => '+38K', 'label' => 'Comunidad nueva'],
+$raw_testimonials = get_field('testimonials');
+$testimonials = [];
+
+if (!empty($raw_testimonials) && is_array($raw_testimonials)) {
+  foreach ($raw_testimonials as $t) {
+    // Build metrics from ACF subfields
+    $metrics = [];
+    if (!empty($t['metric_1_val'])) {
+      $metrics[] = ['value' => $t['metric_1_val'], 'label' => $t['metric_1_lbl'] ?? ''];
+    }
+    if (!empty($t['metric_2_val'])) {
+      $metrics[] = ['value' => $t['metric_2_val'], 'label' => $t['metric_2_lbl'] ?? ''];
+    }
+    if (!empty($t['metric_3_val'])) {
+      $metrics[] = ['value' => $t['metric_3_val'], 'label' => $t['metric_3_lbl'] ?? ''];
+    }
+
+    if (empty($metrics) && !empty($t['metrics'])) {
+      $metrics = $t['metrics'];
+    }
+
+    $testimonials[] = [
+      'brand'    => $t['brand'] ?? 'CLIENTE',
+      'year'     => $t['year'] ?? date('Y'),
+      'quote'    => $t['quote'] ?? '',
+      'initials' => !empty($t['initials']) ? $t['initials'] : (!empty($t['name']) ? substr($t['name'], 0, 2) : 'KM'),
+      'name'     => $t['name'] ?? '',
+      'role'     => $t['role'] ?? '',
+      'metrics'  => $metrics,
+    ];
+  }
+}
+
+if (empty($testimonials)) {
+  $testimonials = [
+    [
+      'brand' => 'NUBA SKIN',
+      'year' => '2024',
+      'quote' => 'Pasamos de ser una marca bonita a ser una marca que la gente busca, recomienda y compra.',
+      'metrics' => [
+        ['value' => '+214%', 'label' => 'Ventas online'],
+        ['value' => '4.8×', 'label' => 'Retorno en ads'],
+        ['value' => '+38K', 'label' => 'Comunidad nueva'],
+      ],
+      'initials' => 'LP',
+      'name' => 'Laura Peña',
+      'role' => 'Fundadora, Nuba Skin',
     ],
-    'initials' => 'LP',
-    'name' => 'Laura Peña',
-    'role' => 'Fundadora, Nuba Skin',
-  ],
-  [
-    'brand' => 'MIMO STUDIO',
-    'year' => '2024',
-    'quote' => 'Kiki’s entendió nuestra esencia desde el primer día y la convirtió en una identidad imposible de ignorar.',
-    'metrics' => [
-      ['value' => '+176%', 'label' => 'Interacción'],
-      ['value' => '3.2×', 'label' => 'Alcance orgánico'],
-      ['value' => '+24K', 'label' => 'Nuevos seguidores'],
+    [
+      'brand' => 'MIMO STUDIO',
+      'year' => '2024',
+      'quote' => 'Kiki’s entendió nuestra esencia desde el primer día y la convirtió en una identidad imposible de ignorar.',
+      'metrics' => [
+        ['value' => '+176%', 'label' => 'Interacción'],
+        ['value' => '3.2×', 'label' => 'Alcance orgánico'],
+        ['value' => '+24K', 'label' => 'Nuevos seguidores'],
+      ],
+      'initials' => 'AM',
+      'name' => 'Ana Molina',
+      'role' => 'Directora, Mimo Studio',
     ],
-    'initials' => 'AM',
-    'name' => 'Ana Molina',
-    'role' => 'Directora, Mimo Studio',
-  ],
-  [
-    'brand' => 'CASA CLUB',
-    'year' => '2025',
-    'quote' => 'No solo llenamos la agenda: construimos una comunidad que vuelve, comparte y se siente parte de la marca.',
-    'metrics' => [
-      ['value' => '92%', 'label' => 'Ocupación'],
-      ['value' => '+68%', 'label' => 'Reservas directas'],
-      ['value' => '6.1×', 'label' => 'Retorno de campaña'],
+    [
+      'brand' => 'CASA CLUB',
+      'year' => '2025',
+      'quote' => 'No solo llenamos la agenda: construimos una comunidad que vuelve, comparte y se siente parte de la marca.',
+      'metrics' => [
+        ['value' => '92%', 'label' => 'Ocupación'],
+        ['value' => '+68%', 'label' => 'Reservas directas'],
+        ['value' => '6.1×', 'label' => 'Retorno de campaña'],
+      ],
+      'initials' => 'JR',
+      'name' => 'Javier Ríos',
+      'role' => 'Co-fundador, Casa Club',
     ],
-    'initials' => 'JR',
-    'name' => 'Javier Ríos',
-    'role' => 'Co-fundador, Casa Club',
-  ],
-];
+  ];
+}
 
 $json_testimonials = htmlspecialchars(json_encode($testimonials), ENT_QUOTES, 'UTF-8');
+$first = $testimonials[0];
 ?>
 
 <section <?= $block_attrs; ?> data-testimonials='<?= $json_testimonials; ?>'>
@@ -68,7 +104,6 @@ $json_testimonials = htmlspecialchars(json_encode($testimonials), ENT_QUOTES, 'U
   </div>
 
   <div class="case-study">
-    <?php $first = $testimonials[0]; ?>
     <div class="case-top">
       <span class="case-brand-label">CASO / <?= esc_html($first['brand']); ?></span>
       <span class="case-year-label"><?= esc_html($first['year']); ?></span>
